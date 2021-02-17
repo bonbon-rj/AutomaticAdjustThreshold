@@ -1,0 +1,12 @@
+[
+{
+  "directory": "/home/ruijun/桌面/RC视觉/JH/AutomaticAdjustThreshold/build",
+  "command": "/usr/bin/c++   -isystem /usr/local/include -isystem /usr/local/include/opencv  -pthread -pg -g   -std=gnu++11 -o CMakeFiles/AutomaticAdjustThreshold.dir/main.cpp.o -c /home/ruijun/桌面/RC视觉/JH/AutomaticAdjustThreshold/main.cpp",
+  "file": "/home/ruijun/桌面/RC视觉/JH/AutomaticAdjustThreshold/main.cpp"
+},
+{
+  "directory": "/home/ruijun/桌面/RC视觉/JH/AutomaticAdjustThreshold/build",
+  "command": "/usr/bin/c++   -isystem /usr/local/include -isystem /usr/local/include/opencv  -pthread -pg -g   -std=gnu++11 -o CMakeFiles/AutomaticAdjustThreshold.dir/GetThreshold.cpp.o -c /home/ruijun/桌面/RC视觉/JH/AutomaticAdjustThreshold/GetThreshold.cpp",
+  "file": "/home/ruijun/桌面/RC视觉/JH/AutomaticAdjustThreshold/GetThreshold.cpp"
+}
+]

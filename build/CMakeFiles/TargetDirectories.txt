@@ -1,0 +1,3 @@
+/home/ruijun/桌面/RC视觉/JH/AutomaticAdjustThreshold/build/CMakeFiles/rebuild_cache.dir
+/home/ruijun/桌面/RC视觉/JH/AutomaticAdjustThreshold/build/CMakeFiles/AutomaticAdjustThreshold.dir
+/home/ruijun/桌面/RC视觉/JH/AutomaticAdjustThreshold/build/CMakeFiles/edit_cache.dir
