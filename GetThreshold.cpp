@@ -300,6 +300,85 @@ int FindPixelMost(cv::Mat &frame,int channel,int num)
 	return result;
 }
 
+/********************************************************
+ * @brief kmeans获得图像单通道集群值作为阈值预估值
+ * @param frame 输入图像
+ * @return 返回预估像素值
+ * ******************************************************/
+int KmeansGetThreshold(cv::Mat &frame)
+{
+	//图像的宽和高
+	int width = frame.cols;
+	int height = frame.rows;
+
+	//将图像数据转化为一维的矩阵 uchar -> float kmeans要用到float
+	cv::Mat points(width * height,1,CV_32F); //行 列
+	for(int i =0;i<height;i++)
+	{
+		uchar* data3dims = frame.ptr<uchar>(i);
+		for (int j = 0; j < width * 1; j++) 
+		{
+			float *data1dim =points.ptr<float>(i*width+j);  			
+			data1dim[0] =static_cast<float>(data3dims[j]);
+		}
+	}
+
+	//kmeans
+	int clusterCount =10;
+	cv::Mat labels; //存放结果标签
+	cv::TermCriteria criteria(cv::TermCriteria::EPS + cv::TermCriteria::COUNT, 100, 0.01);//迭代终止条件
+	kmeans(points, clusterCount, labels, criteria, 3, cv::KMEANS_RANDOM_CENTERS);
+
+	//计算各个类别的数量
+	std::vector<int> Count(clusterCount,0);
+	for(int i =0;i<labels.rows;i++)
+	{
+		int* labeldata = labels.ptr<int>(i);
+		for (int j = 0; j < labels.cols * 1; j++) 
+		{
+			//循环类别数 对应类别计数加一
+			for(int k =0 ;k<clusterCount;k++)
+			{
+				if(labeldata[j] == k)
+				{
+					Count[k]++;
+				}
+			}
+		}
+	}
+
+	//求出类别数量最多的集群
+	int max =0;
+	int labelMost =0;
+	for(int i =0 ;i <clusterCount;i++)
+	{
+		if(Count[i]>max)
+		{
+			max =Count[i];
+			labelMost =i;
+		}	
+	}
+
+	//对类别最多的集群求平均值作为预估值
+	float sum =0;
+	int num =0;
+	for(int i =0;i<labels.rows;i++)
+	{
+		int* labeldata = labels.ptr<int>(i);
+		float * pointdata =points.ptr<float>(i);
+		for (int j = 0; j < labels.cols * 1; j++) 
+		{			
+			if(labeldata[j]==labelMost)
+			{
+				sum+=pointdata[j];
+				num++;
+			}
+		}
+	}
+	int result =static_cast<int>(sum/num);
+
+	return result;
+}
 
 /********************************************************
  * @brief 读取图像或视频流第一帧

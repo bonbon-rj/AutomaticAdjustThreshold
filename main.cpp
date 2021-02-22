@@ -36,18 +36,19 @@ int main(void)
 	}
 
 	//读取偏移量
-	std::cout<<"(Ctrl+C退出)  阈值偏移预估值的范围(建议为40):";
-	std::string offsetStr;
-	getline(std::cin,offsetStr);
+	// std::cout<<"(Ctrl+C退出)  阈值偏移预估值的范围(建议为40):";
+	// std::string offsetStr;
+	// getline(std::cin,offsetStr);
 
-	//判断是否为数字
-	while(!isNum(offsetStr))
-	{
-		std::cout<<"请输入数字\n";
-		std::cout<<"(Ctrl+C退出)  阈值偏移预估值的范围(建议为40):";
-		getline(std::cin,offsetStr);
-	}
-	int offset =stoi(offsetStr);
+	// //判断是否为数字
+	// while(!isNum(offsetStr))
+	// {
+	// 	std::cout<<"请输入数字\n";
+	// 	std::cout<<"(Ctrl+C退出)  阈值偏移预估值的范围(建议为40):";
+	// 	getline(std::cin,offsetStr);
+	// }
+	// int offset =stoi(offsetStr);
+	int offset =40;
 		
 	bool end = false;
 	while(!end)
@@ -73,10 +74,23 @@ int main(void)
 		cv::Mat ROI_hsv;
 		cv::cvtColor(ROI,ROI_hsv,cv::COLOR_BGR2HSV);
 
-		//通过hsv直方图获得hsv最小值的预估值
-		int EstimatedHmin=FindPixelMost(ROI_hsv,0,5);
-		int EstimatedSmin=FindPixelMost(ROI_hsv,1,5);
-		int EstimatedVmin=FindPixelMost(ROI_hsv,2,5);
+		//分离hsv三通道
+		cv::Mat h,s,v;
+		std::vector<cv::Mat> HsvVec;
+		split(ROI_hsv,HsvVec);
+		h =HsvVec.at(0);
+		s =HsvVec.at(1);
+		v =HsvVec.at(2);
+
+		//通过kmeans获得预估值
+		int EstimatedHmin =KmeansGetThreshold(h);
+		int EstimatedSmin =KmeansGetThreshold(s);
+		int EstimatedVmin =KmeansGetThreshold(v);
+
+		// //通过hsv直方图获得hsv最小值的预估值
+		// int EstimatedHmin=FindPixelMost(ROI_hsv,0,5);
+		// int EstimatedSmin=FindPixelMost(ROI_hsv,1,5);
+		// int EstimatedVmin=FindPixelMost(ROI_hsv,2,5);
 
 		//打印预估值
 		std::cout<<"\n";
