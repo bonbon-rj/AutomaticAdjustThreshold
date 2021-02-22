@@ -13,9 +13,8 @@ int main(void)
 	std::cout<<"/**********支持文件格式：jpg、png、jpeg、avi、mp4*********/\n";
 	std::cout<<"/*******本程序可以实现图像或视频第一帧的自动调整阈值******/\n";
 	std::cout<<"/***************最终会有hsv的阈值以及效果图***************/\n";
-	std::cout<<"/*******需要你输入文件绝对路径、偏移范围和框选两个框******/\n";
+	std::cout<<"/*******需要你输入文件绝对路径和框选两个框****************/\n";
 	std::cout<<"/**************文件路径要绝对路径且不需要引号*************/\n";
-	std::cout<<"/*********阈值范围可以直接填40 效果不好可以适当增大********/\n";
 	std::cout<<"/*********第一个框需要基本覆盖你所要调整阈值的东西********/\n";
 	std::cout<<"/*****************第二个框要包含第一个框******************/\n";
 	std::cout<<"/*****不包含第一个框同样颜色的东西 包含其他颜色的东西 ****/\n";
@@ -82,7 +81,7 @@ int main(void)
 		s =HsvVec.at(1);
 		v =HsvVec.at(2);
 
-		//通过kmeans获得预估值
+		//通过kmeans获得预估值 graphcast
 		int EstimatedHmin =KmeansGetThreshold(h);
 		int EstimatedSmin =KmeansGetThreshold(s);
 		int EstimatedVmin =KmeansGetThreshold(v);
