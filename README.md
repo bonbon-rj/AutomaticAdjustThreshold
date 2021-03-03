@@ -1,2 +1,2 @@
 # AutomaticAdjustThreshold
-Here provides an executable file that can automatically adjust the threshold
+Here provides a way to adjust the threshold automatically
