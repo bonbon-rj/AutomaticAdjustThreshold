@@ -14,5 +14,9 @@ int FindPixelMost(cv::Mat &frame,int channel,int num);
 int KmeansGetThreshold(cv::Mat &frame);
 bool ReadFrame(cv::Mat &frame,std::string &path,int width=320);
 bool HeightMerge(cv::Mat &img1,cv::Mat &img2,cv::Mat &OutputImg);
+void print_message(void);
+
+
+void AdjustThreshold(void);
 
 
