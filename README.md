@@ -1,18 +1,17 @@
 # AutomaticAdjustThreshold
-Here provides a way to adjust the threshold automatically
+这是一个颜色HSV阈值求解器，使用方法如下
 
-### 
-
-### How to use（Ubuntu系统）
-
-1.切换目录到executable_file 并执行可执行文件
+1.编译运行
 
 ```shell
-cd  executable_file && ./AutomaticAdjustThreshold
+mkdir build
+cd build
+cmake .. && make
+./AutomaticAdjustThreshold
 ```
 
-2.输入图片的路径
+2.输入测试图片路径
 
-pic里的example.jpg是示例图片、test.jpg是可供测试图片。可以直接输入test.jpg的路径。
+可以直接输入`../pic/test.jpg`
 
 3.如example.jpg操作

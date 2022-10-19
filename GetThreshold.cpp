@@ -504,7 +504,7 @@ void AdjustThreshold(void)
 
 	//读取视频流第一帧或者图像 自动按比缩放至宽为320 也可以自己指定ReadFrame的width参数
 	cv::Mat frame;
-	while(!ReadFrame(frame,path,320))
+	while(!ReadFrame(frame,path,640))
 	{
 		std::cout<<"文件名输入错误，请按要求输入\n";
 		std::cout<<"(Ctrl+C退出)  File Path:(输入0打开摄像头)";
