@@ -3,6 +3,7 @@
 #include <opencv2/opencv.hpp>
 #include <regex>
 #include <time.h>
+#include <fstream>
 //定义排序结构体 成员变量为框选ROI中二值化255的点的数量以及对应的hsv值
 
 int Check(int number);

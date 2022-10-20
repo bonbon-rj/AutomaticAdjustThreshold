@@ -462,15 +462,15 @@ bool HeightMerge(cv::Mat &img1,cv::Mat &img2,cv::Mat &OutputImg)
 
 	//图像和矩形框暂时变量
 	cv::Mat TempMat;
-	CvRect TempRect;
+	cv::Rect TempRect;
 
 	//第一张图
-	TempRect = cvRect(0, 0, width, height);
+	TempRect = cv::Rect(0, 0, width, height);
 	TempMat = OutputImg(TempRect);
     img1.colRange(0,width).copyTo(TempMat);
 
 	 // 第二张图
-    TempRect = cvRect(width, 0,width, height);
+    TempRect = cv::Rect(width, 0,width, height);
     TempMat = OutputImg(TempRect);
     img2.colRange(0, width).copyTo(TempMat);
 
